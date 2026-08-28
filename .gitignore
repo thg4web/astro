@@ -14,6 +14,9 @@ _site/
 .cache/
 *.log
 
+# No public README for this site (Aaron's call 2026-08-28) — kept local only
+/README.md
+
 # Project management & working files — local only, never published
 CLAUDE.md
 Project/
