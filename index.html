@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Henderson Astronomy</title>
+<meta name="description" content="Aaron Henderson's astronomy: a lunar geology reference, a Messier marathon logbook, and astrophotography from a backyard in the Raleigh area of North Carolina.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0e16'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%232F78BD' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%232F78BD' stroke-width='1.5' opacity='.5' transform='rotate(-20 16 16) scale(1 .5)' transform-origin='16 16'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="head-top">
+    <p class="wordmark">HENDERSON ASTRONOMY<span class="stop">.</span></p>
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+      <span aria-hidden="true">◑</span>
+    </button>
+  </div>
+  <p class="tagline">A field log of the night sky</p>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/" aria-current="page">Home</a>
+    <a href="https://luna.thgnetworks.com">Luna</a>
+    <a href="https://mmol.thgnetworks.com">MMOL</a>
+    <span class="nav-soon">Images <em>soon</em></span>
+  </nav>
+</header>
+
+<main id="main">
+  <p class="intro">The front door to everything I do under the stars. Three projects live here, and more on the way.</p>
+
+  <ul class="sites">
+    <li class="site">
+      <h2><a href="https://luna.thgnetworks.com">Luna</a></h2>
+      <p>The USGS Geologic Atlas of the Moon, quadrangle by quadrangle. Click a quad on the near side and read its geology.</p>
+      <a class="visit" href="https://luna.thgnetworks.com">luna.thgnetworks.com <span aria-hidden="true">&rarr;</span></a>
+    </li>
+    <li class="site">
+      <h2><a href="https://mmol.thgnetworks.com">MMOL</a></h2>
+      <p>The Messier Marathon Observer&rsquo;s Log. All 110 objects in marathon order, night-vision safe, ready for an Astronomical League certificate submission.</p>
+      <a class="visit" href="https://mmol.thgnetworks.com">mmol.thgnetworks.com <span aria-hidden="true">&rarr;</span></a>
+    </li>
+    <li class="site is-soon">
+      <h2>Images</h2>
+      <p>The astrophotography gallery. Session logs, full acquisition data, and full-resolution frames. In build now.</p>
+      <span class="visit">images.thgnetworks.com</span>
+    </li>
+  </ul>
+
+  <section class="about" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <p>I&rsquo;m Aaron Henderson. I shoot the night sky from a backyard in the Raleigh area of North Carolina, mostly with a ZWO Seestar S50 and an S30&nbsp;Pro. This site collects the reference tools I&rsquo;ve built and the images I&rsquo;ve made.</p>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>Henderson Astronomy &middot; <a href="https://astro.thgnetworks.com">astro.thgnetworks.com</a></p>
+  <p class="fine">Part of the thgnetworks.com family.</p>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var KEY = "astro-theme";
+    var btn = document.getElementById("themeToggle");
+
+    function current() {
+      var set = root.getAttribute("data-theme");
+      if (set) return set;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    function apply(mode, persist) {
+      root.setAttribute("data-theme", mode);
+      btn.setAttribute("aria-pressed", mode === "dark" ? "true" : "false");
+      if (persist) { try { localStorage.setItem(KEY, mode); } catch (e) {} }
+    }
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (saved === "dark" || saved === "light") apply(saved, false);
+    } catch (e) {}
+
+    btn.addEventListener("click", function () {
+      apply(current() === "dark" ? "light" : "dark", true);
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+/* ==========================================================================
+   Henderson Astronomy — astro.thgnetworks.com
+   Shared skin for the thgnetworks.com astronomy family.
+   Display: Audiowide   Body/UI: Exo 2   Mono: IBM Plex Mono
+   Accent: #2F78BD
+   ========================================================================== */
+
+/* ---- tokens: light is the base -------------------------------------------- */
+:root {
+  --bg:        #eef3f9;
+  --bg-glow:   rgba(47, 120, 189, 0.10);
+  --panel:     #ffffff;
+  --panel-2:   #f5f8fc;
+  --line:      #d3ddea;
+  --line-soft: #e4eaf3;
+  --ink:       #111823;
+  --ink-dim:   #4a566d;
+  --ink-faint: #77839a;
+  --accent:    #2f78bd;
+  --accent-ink:#ffffff;      /* text on an accent fill */
+  --radius:    14px;
+  --maxw:      940px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #0a0e16;
+    --bg-glow:   rgba(47, 120, 189, 0.16);
+    --panel:     #131b28;
+    --panel-2:   #0f1622;
+    --line:      #26324a;
+    --line-soft: #1b2436;
+    --ink:       #e9eef8;
+    --ink-dim:   #9aa6be;
+    --ink-faint: #606d86;
+    --accent:    #2f78bd;
+    --accent-ink:#ffffff;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:        #0a0e16;
+  --bg-glow:   rgba(47, 120, 189, 0.16);
+  --panel:     #131b28;
+  --panel-2:   #0f1622;
+  --line:      #26324a;
+  --line-soft: #1b2436;
+  --ink:       #e9eef8;
+  --ink-dim:   #9aa6be;
+  --ink-faint: #606d86;
+  --accent:    #2f78bd;
+  --accent-ink:#ffffff;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg:        #eef3f9;
+  --bg-glow:   rgba(47, 120, 189, 0.10);
+  --panel:     #ffffff;
+  --panel-2:   #f5f8fc;
+  --line:      #d3ddea;
+  --line-soft: #e4eaf3;
+  --ink:       #111823;
+  --ink-dim:   #4a566d;
+  --ink-faint: #77839a;
+  --accent:    #2f78bd;
+  --accent-ink:#ffffff;
+  color-scheme: light;
+}
+
+/* ---- reset-ish ---------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: "Exo 2", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image: radial-gradient(1100px 780px at 80% -12%, var(--bg-glow), transparent 60%);
+  background-attachment: fixed;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 8px 0;
+  z-index: 10;
+}
+.skip:focus { left: 0; }
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- layout shell ----------------------------------------------------- */
+.site-head,
+main,
+.site-foot {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 4vw, 2rem);
+}
+
+.site-head {
+  padding-top: clamp(1.75rem, 5vw, 3.5rem);
+  padding-bottom: 1.5rem;
+}
+
+.head-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wordmark {
+  font-family: "Audiowide", "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 5.5vw, 3rem);
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin: 0;
+  max-width: 18ch;
+  overflow-wrap: anywhere;
+}
+.wordmark .stop { color: var(--accent); }
+
+.tagline {
+  font-family: "Audiowide", "Arial Narrow", sans-serif;
+  font-size: clamp(0.78rem, 2vw, 0.98rem);
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  margin: 0.85rem 0 0;
+}
+
+.theme-toggle {
+  flex: none;
+  font-size: 1.05rem;
+  line-height: 1;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  background: var(--panel);
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--ink-dim); }
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1.25rem;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line-soft);
+  font-family: "Audiowide", "Arial Narrow", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+}
+.site-nav a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { color: var(--ink); }
+.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+.nav-soon {
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+}
+.nav-soon em {
+  font-style: normal;
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-left: 0.35rem;
+}
+
+/* ---- main ------------------------------------------------------------- */
+main { padding-top: 2.25rem; padding-bottom: 3rem; }
+
+.intro {
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  color: var(--ink-dim);
+  max-width: 46ch;
+  margin: 0 0 2.5rem;
+  text-wrap: balance;
+}
+
+.sites {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.15rem;
+}
+
+.site {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.site h2 {
+  font-family: "Audiowide", "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.65rem;
+}
+.site h2 a { color: var(--ink); text-decoration: none; }
+.site h2 a:hover { color: var(--accent); }
+.site p {
+  margin: 0 0 1.1rem;
+  font-size: 0.93rem;
+  color: var(--ink-dim);
+}
+.site .visit {
+  margin-top: auto;
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  text-decoration: none;
+}
+.site .visit:hover { text-decoration: underline; }
+
+.site.is-soon {
+  border-top-color: var(--line);
+}
+.site.is-soon h2 { color: var(--ink-dim); }
+.site.is-soon .visit { color: var(--ink-faint); }
+
+.about {
+  margin-top: 3rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line-soft);
+}
+.about h2 {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 0.9rem;
+}
+.about p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--ink-dim);
+}
+
+/* ---- footer --------------------------------------------------------- */
+.site-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 1.6rem;
+  padding-bottom: 3rem;
+  color: var(--ink-dim);
+  font-size: 0.85rem;
+}
+.site-foot p { margin: 0.2rem 0; }
+.site-foot a { color: var(--accent); text-decoration: none; }
+.site-foot a:hover { text-decoration: underline; }
+.site-foot .fine {
+  color: var(--ink-faint);
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
