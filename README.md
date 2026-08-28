@@ -50,12 +50,12 @@ GitHub Pages on `thg4web/astro`, `main` / root. Custom domain `astro.thgnetworks
 (ZoneEdit `CNAME` → `thg4web.github.io`), Enforce HTTPS on. Pushes to `main` redeploy
 automatically.
 
-Commit auth: `source ../git_info/git-auth-astro.sh` (the `id_astro` deploy key).
+Commit auth: `source ../../git_info/git-auth-astro.sh` (the `id_astro` deploy key).
 The auth script's final `ssh -T` exits non-zero and shell env does not persist
 between separate invocations, so push in one line:
 
 ```
-source ../git_info/git-auth-astro.sh; git push
+source ../../git_info/git-auth-astro.sh; git push
 ```
 
 ## Not committed
