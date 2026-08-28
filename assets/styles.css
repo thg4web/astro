@@ -3,70 +3,89 @@
    Shared skin for the thgnetworks.com astronomy family.
    Display: Audiowide   Body/UI: Exo 2   Mono: IBM Plex Mono
    Accent: #2F78BD
+   Hero: M31 (Andromeda) fixed background + twinkling starfield canvas +
+   a masthead Pleiades asterism. On the light theme the photo and stars
+   render as a bright grayscale negative.
    ========================================================================== */
 
 /* ---- tokens: light is the base -------------------------------------------- */
 :root {
-  --bg:        #eef3f9;
-  --bg-glow:   rgba(47, 120, 189, 0.10);
-  --panel:     #ffffff;
-  --panel-2:   #f5f8fc;
-  --line:      #d3ddea;
-  --line-soft: #e4eaf3;
-  --ink:       #111823;
-  --ink-dim:   #4a566d;
-  --ink-faint: #77839a;
-  --accent:    #2f78bd;
-  --accent-ink:#ffffff;      /* text on an accent fill */
-  --radius:    14px;
-  --maxw:      940px;
+  --bg:          #eef3f9;
+  --panel:       #ffffff;
+  --card-bg:     rgba(255, 255, 255, 0.82);
+  --panel-2:     #f5f8fc;
+  --line:        #c9d5e6;
+  --line-soft:   #dde6f1;
+  --ink:         #111823;
+  --ink-dim:     #3f4a5e;
+  --ink-faint:   #6a7688;
+  --accent:      #2f78bd;
+  --accent-ink:  #ffffff;
+  --asterism-ink:#1f5688;         /* darker blue on the light theme */
+  --veil:        rgba(240, 244, 250, 0.50);
+  --photo-filter:invert(1) grayscale(1) brightness(2);
+  --wordmark-glow:none;
+  --radius:      14px;
+  --maxw:        940px;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:        #0a0e16;
-    --bg-glow:   rgba(47, 120, 189, 0.16);
-    --panel:     #131b28;
-    --panel-2:   #0f1622;
-    --line:      #26324a;
-    --line-soft: #1b2436;
-    --ink:       #e9eef8;
-    --ink-dim:   #9aa6be;
-    --ink-faint: #606d86;
-    --accent:    #2f78bd;
-    --accent-ink:#ffffff;
+    --bg:          #0a0e16;
+    --panel:       #131b28;
+    --card-bg:     rgba(17, 24, 37, 0.64);
+    --panel-2:     #0f1622;
+    --line:        #26324a;
+    --line-soft:   #1b2436;
+    --ink:         #e9eef8;
+    --ink-dim:     #9aa6be;
+    --ink-faint:   #606d86;
+    --accent:      #2f78bd;
+    --accent-ink:  #ffffff;
+    --asterism-ink:#7cb8ea;       /* lighter blue on the dark theme */
+    --veil:        rgba(6, 10, 20, 0.56);
+    --photo-filter:none;
+    --wordmark-glow:0 0 40px rgba(47, 120, 189, 0.45), 0 0 90px rgba(47, 120, 189, 0.20);
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg:        #0a0e16;
-  --bg-glow:   rgba(47, 120, 189, 0.16);
-  --panel:     #131b28;
-  --panel-2:   #0f1622;
-  --line:      #26324a;
-  --line-soft: #1b2436;
-  --ink:       #e9eef8;
-  --ink-dim:   #9aa6be;
-  --ink-faint: #606d86;
-  --accent:    #2f78bd;
-  --accent-ink:#ffffff;
+  --bg:          #0a0e16;
+  --panel:       #131b28;
+  --card-bg:     rgba(17, 24, 37, 0.64);
+  --panel-2:     #0f1622;
+  --line:        #26324a;
+  --line-soft:   #1b2436;
+  --ink:         #e9eef8;
+  --ink-dim:     #9aa6be;
+  --ink-faint:   #606d86;
+  --accent:      #2f78bd;
+  --accent-ink:  #ffffff;
+  --asterism-ink:#7cb8ea;
+  --veil:        rgba(6, 10, 20, 0.56);
+  --photo-filter:none;
+  --wordmark-glow:0 0 40px rgba(47, 120, 189, 0.45), 0 0 90px rgba(47, 120, 189, 0.20);
   color-scheme: dark;
 }
 
 :root[data-theme="light"] {
-  --bg:        #eef3f9;
-  --bg-glow:   rgba(47, 120, 189, 0.10);
-  --panel:     #ffffff;
-  --panel-2:   #f5f8fc;
-  --line:      #d3ddea;
-  --line-soft: #e4eaf3;
-  --ink:       #111823;
-  --ink-dim:   #4a566d;
-  --ink-faint: #77839a;
-  --accent:    #2f78bd;
-  --accent-ink:#ffffff;
+  --bg:          #eef3f9;
+  --panel:       #ffffff;
+  --card-bg:     rgba(255, 255, 255, 0.82);
+  --panel-2:     #f5f8fc;
+  --line:        #c9d5e6;
+  --line-soft:   #dde6f1;
+  --ink:         #111823;
+  --ink-dim:     #3f4a5e;
+  --ink-faint:   #6a7688;
+  --accent:      #2f78bd;
+  --accent-ink:  #ffffff;
+  --asterism-ink:#1f5688;
+  --veil:        rgba(240, 244, 250, 0.50);
+  --photo-filter:invert(1) grayscale(1) brightness(2);
+  --wordmark-glow:none;
   color-scheme: light;
 }
 
@@ -78,10 +97,9 @@ body {
   font-family: "Exo 2", "Segoe UI", system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background-color: var(--bg);
-  background-image: radial-gradient(1100px 780px at 80% -12%, var(--bg-glow), transparent 60%);
-  background-attachment: fixed;
   line-height: 1.62;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 a { color: var(--accent); }
@@ -95,7 +113,7 @@ a:hover { text-decoration: none; }
   color: var(--accent-ink);
   padding: 0.6rem 1rem;
   border-radius: 0 0 8px 0;
-  z-index: 10;
+  z-index: 20;
 }
 .skip:focus { left: 0; }
 
@@ -105,17 +123,90 @@ a:hover { text-decoration: none; }
   border-radius: 4px;
 }
 
-/* ---- layout shell ----------------------------------------------------- */
+/* ---- fixed background: M31 photo + starfield canvas ------------------- */
+.bg-photo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("andromeda.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: var(--photo-filter);
+}
+.bg-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--veil);
+}
+#sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+
+/* ---- masthead asterism (rendered like www.thgnetworks.com) ---------- */
+.asterism {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 235px;
+  margin: clamp(1.4rem, 4vw, 2.4rem) auto 0;
+  text-decoration: none;
+}
+.asterism-mark {
+  display: block;
+  width: 235px;
+  aspect-ratio: 2056 / 1755;
+  background: var(--asterism-ink);
+  -webkit-mask: url("pleiades.png") center / contain no-repeat;
+  mask: url("pleiades.png") center / contain no-repeat;
+  filter: drop-shadow(0 0 10px rgba(47, 120, 189, 0.38));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.asterism:hover .asterism-mark,
+.asterism:focus-visible .asterism-mark {
+  filter: drop-shadow(0 0 16px rgba(47, 120, 189, 0.65));
+  transform: translateY(-2px);
+}
+.asterism-tip {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  font-family: "Audiowide", "Arial Narrow", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.asterism:hover .asterism-tip,
+.asterism:focus-visible .asterism-tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---- content sits above the sky ------------------------------------- */
 .site-head,
 main,
 .site-foot {
+  position: relative;
+  z-index: 1;
   max-width: var(--maxw);
   margin-inline: auto;
   padding-inline: clamp(1.1rem, 4vw, 2rem);
 }
 
 .site-head {
-  padding-top: clamp(1.75rem, 5vw, 3.5rem);
+  padding-top: clamp(1.2rem, 3vw, 2rem);
   padding-bottom: 1.5rem;
 }
 
@@ -136,6 +227,7 @@ main,
   margin: 0;
   max-width: 18ch;
   overflow-wrap: anywhere;
+  text-shadow: var(--wordmark-glow);
 }
 .wordmark .stop { color: var(--accent); }
 
@@ -155,11 +247,13 @@ main,
   height: 2.4rem;
   display: grid;
   place-items: center;
-  background: var(--panel);
+  background: var(--card-bg);
   color: var(--ink-dim);
   border: 1px solid var(--line);
   border-radius: 999px;
   cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 .theme-toggle:hover { color: var(--ink); border-color: var(--ink-dim); }
@@ -223,7 +317,9 @@ main { padding-top: 2.25rem; padding-bottom: 3rem; }
 }
 
 .site {
-  background: var(--panel);
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--line);
   border-top: 3px solid var(--accent);
   border-radius: var(--radius);
@@ -255,16 +351,18 @@ main { padding-top: 2.25rem; padding-bottom: 3rem; }
 }
 .site .visit:hover { text-decoration: underline; }
 
-.site.is-soon {
-  border-top-color: var(--line);
-}
+.site.is-soon { border-top-color: var(--line); }
 .site.is-soon h2 { color: var(--ink-dim); }
 .site.is-soon .visit { color: var(--ink-faint); }
 
 .about {
   margin-top: 3rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--line-soft);
+  padding: 1.5rem 1.4rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
 }
 .about h2 {
   font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -300,4 +398,5 @@ main { padding-top: 2.25rem; padding-bottom: 3rem; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  .asterism-tip { transition: opacity 0.01s; }
 }
