@@ -229,7 +229,6 @@ main,
   overflow-wrap: anywhere;
   text-shadow: var(--wordmark-glow);
 }
-.wordmark .stop { color: var(--accent); }
 
 .tagline {
   font-family: "Audiowide", "Arial Narrow", sans-serif;
