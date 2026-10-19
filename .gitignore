@@ -27,3 +27,6 @@ working/
 previews/
 *.draft.html
 *.wip.*
+
+# Claude memory for this project — local only, never published
+/memory/
